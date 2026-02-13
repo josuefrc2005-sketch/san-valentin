@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>San Valentín 💘</title>
+<style>
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff9ecf, #ffc3e6);
+    overflow: hidden;
+}
+
+h1 {
+    color: white;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 8px #ff4da6;
+}
+
+button {
+    padding: 15px 35px;
+    font-size: 22px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 20px;
+    transition: all 0.3s ease;
+}
+
+#si {
+    background-color: #ff4da6;
+    color: white;
+    box-shadow: 0 0 15px #ff4da6;
+}
+
+#no {
+    background-color: #444;
+    color: white;
+    position: absolute;
+}
+
+#invitacion {
+    display: none;
+    margin-top: 40px;
+    padding: 30px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 20px;
+    font-size: 22px;
+    color: #d63384;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    animation: aparecer 1s ease forwards;
+}
+
+@keyframes aparecer {
+    from {opacity: 0; transform: scale(0.5);}
+    to {opacity: 1; transform: scale(1);}
+}
+
+.corazon {
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    animation: flotar 5s linear infinite;
+}
+
+@keyframes flotar {
+    0% {transform: translateY(100vh); opacity: 1;}
+    100% {transform: translateY(-10vh); opacity: 0;}
+}
+
+</style>
+</head>
+<body>
+
+<h1>¿Quieres ser mi Valentín? 💕</h1>
+
+<button id="si">Sipirilii 💖</button>
+<button id="no">noporolo 😢</button>
+
+<div id="invitacion">
+    💌 Cita el 14 de febrero a las 19:00 horas 💌<br><br>
+    Vestirse elegante ✨<br><br>
+    Me encantas demasiado 💘<br>
+    Te amo ❤️
+</div>
+
+<script>
+
+let botonSi = document.getElementById("si");
+let botonNo = document.getElementById("no");
+let invitacion = document.getElementById("invitacion");
+let tamaño = 22;
+
+// Botón NO huye
+botonNo.addEventListener("mouseover", function() {
+    let x = Math.random() * (window.innerWidth - 100);
+    let y = Math.random() * (window.innerHeight - 50);
+    botonNo.style.left = x + "px";
+    botonNo.style.top = y + "px";
+});
+
+// Botón SI se hace gigante
+botonNo.addEventListener("click", function() {
+    tamaño += 15;
+    botonSi.style.fontSize = tamaño + "px";
+});
+
+// Mostrar invitación
+botonSi.addEventListener("click", function() {
+    invitacion.style.display = "block";
+});
+
+// Corazones flotando
+function crearCorazon() {
+    const corazon = document.createElement("div");
+    corazon.classList.add("corazon");
+    corazon.innerHTML = "💖";
+    corazon.style.left = Math.random() * window.innerWidth + "px";
+    corazon.style.fontSize = (Math.random() * 20 + 10) + "px";
+    document.body.appendChild(corazon);
+
+    setTimeout(() => {
+        corazon.remove();
+    }, 5000);
+}
+
+setInterval(crearCorazon, 300);
+
+</script>
+
+</body>
+</html>
